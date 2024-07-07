@@ -9,7 +9,11 @@ const Terminal = () =>{
     const isRendered = useRef(false);
 
     useEffect(()=>{
-        if (isRendered == true) return;
+        if (isRendered == true){
+            console.log("Already rendered");
+            return;
+        }
+        console.log("Init rendered");
         isRendered.current = true;
 
         const term = new XTerminal({
