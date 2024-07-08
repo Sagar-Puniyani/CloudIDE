@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const FileTreeNode = ({ fileName, nodes }) => {
     return (
         <div style={{marginLeft: "20px"}}>
@@ -16,6 +17,7 @@ const FileTreeNode = ({ fileName, nodes }) => {
     )
 }
 
+// eslint-disable-next-line react/prop-types
 const FileTree = ({ tree }) => {
     return (
         <FileTreeNode
