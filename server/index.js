@@ -6,6 +6,7 @@ import pty from 'node-pty';
 import os from 'os';
 import path from 'path';
 import cors from 'cors';
+import chokidar from 'chokidar';
 
 const currentWorkingDirectory = process.env.INIT_CWD || process.cwd();
 
@@ -33,10 +34,21 @@ ptyProcess.onData(data => {
     io.emit('terminal:data' , data)
 })
 
+chokidar.watch('./user').on('all', (event, path) => {
+    io.emit('file:refresh' , path)
+});
+
 io.on('connection' , (socket)=>{
     console.log(`socket connected : ` , socket.id);
 
+    socket.emit('file:refresh');
+
+    socket.on('file:change' , async ({path, content})=>{
+        await fs.writeFile(`./user/${path}`, content);
+    })
+
     socket.on('terminal:write' , (data)=>{
+        console.log('Term' , data);
         ptyProcess.write(data);
     })
 });
