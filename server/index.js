@@ -58,6 +58,12 @@ app.get('/files' , async (req, res) => {
     return res.json({tree : fileTree})
 })
 
+app.get('/file-content' , async(req, res )=>{
+    const path = req.query.path;
+    const content = await fs.readFile(`./user/${path}`, 'utf-8');
+    return res.json({ content})
+})
+
 server.listen(9000, ()=>console.log(`🐳 Docker server running on port 9000`));
 
 async function generateFileTree(directory){
