@@ -1,0 +1,88 @@
+/* Container with fixed width and dark background */
+.file-tree-container {
+    width: 300px;
+    max-width: 100%;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    background-color: #1e1e1e;
+    overflow: auto;
+    font-family: Arial, sans-serif;
+    color: #f5f5f5;
+    position: relative; /* Needed for sparkles positioning */
+    overflow: hidden;
+}
+
+/* Static sparkles container */
+.sparkle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: #ffa726;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/* Styling each node with padding and spacing */
+.tree-node {
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.node-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Collapse and file icons styling */
+.collapse-icon, .file-icon {
+    color: #999;
+}
+
+.icon-text {
+    display: inline-flex;
+    align-items: center;
+    color: #ffa726; /* Accent color for folders */
+}
+
+/* Styling for file and folder names */
+.file-name {
+    margin-left: 8px;
+    color: #e0e0e0;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Indentation for child nodes */
+.node-children {
+    padding-left: 20px;
+    border-left: 1px dashed #666;
+    margin-top: 4px;
+}
+
+/* Hover effects */
+.tree-node:hover {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* Prevent the text from expanding container */
+.file-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px; /* Adjust this to fit within container width */
+}

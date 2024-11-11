@@ -1,4 +1,13 @@
-*{
+* {
     padding: 0;
     margin: 0;
+}
+
+body {
+    background: #060f1e;
+}
+
+.heading{
+    color: azure;
+    text-align: center;
 }

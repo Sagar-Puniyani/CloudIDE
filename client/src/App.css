@@ -26,3 +26,21 @@ li{
   background: #1a1919f5;
   color: azure;
 }
+
+.file-node {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.folder-node {
+  color: #28a745;
+  font-weight: bold;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+div {
+  margin: 10px 0;
+}
