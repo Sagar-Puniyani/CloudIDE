@@ -77,7 +77,10 @@ function App() {
             tree={fileTree} />
         </div>
         <div className="editor">
-          <h2 className="heading" >Code Editor</h2>
+          <div className="flex">
+          <img className="logo-image"  src="./image.png" alt="image" />
+          <h2 className="heading" >Code Meter</h2>
+          </div>
           {selectedFile && <p className="file-path">{selectedFile.replaceAll('/', ' > ')}</p>}
           <AceEditor
             value={code}
