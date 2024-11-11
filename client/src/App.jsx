@@ -9,6 +9,10 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/ext-language_tools";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
+
 function App() {
 
   const [fileTree, setFileTree] = useState({});
@@ -19,7 +23,7 @@ function App() {
   const isSaved = selectedFileContent === code;
 
   const getFileTree = async () => {
-    const response = await fetch('http://localhost:9000/files');
+    const response = await fetch(`${BASE_URL}/files`);
     const result = await response.json();
     console.log(result.tree);
 
@@ -28,7 +32,7 @@ function App() {
 
   const getFileContent = useCallback(async () => {
     if (!selectedFile) return;
-    const response = await fetch(`http://localhost:9000/file-content?path=${selectedFile}`);
+    const response = await fetch(`${BASE_URL}/file-content?path=${selectedFile}`);
     const result = await response.json();
     setSelectedFileContent(result.content);
     console.log(result.content);
@@ -138,7 +142,7 @@ export default App;
 //   const isSaved = selectedFileContent === code;
 
 //   const getFileTree = async () => {
-//     const response = await fetch('http://localhost:9000/files');
+//     const response = await fetch('${BASE_URL}/files');
 //     const result = await response.json();
 //     console.log(result.tree);
 
@@ -147,7 +151,7 @@ export default App;
 
 //   const getFileContent = useCallback(async () => {
 //     if (!selectedFile) return;
-//     const response = await fetch(`http://localhost:9000/file-content?path=${selectedFile}`);
+//     const response = await fetch(`${BASE_URL}/file-content?path=${selectedFile}`);
 //     const result = await response.json();
 //     setSelectedFileContent(result.content);
 //     console.log(result.content);
