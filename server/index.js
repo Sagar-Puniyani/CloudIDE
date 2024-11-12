@@ -30,6 +30,8 @@ const io = new Server({
 });
 app.use(cors());
 
+app.use(express.static('public/dist'));
+
 io.attach(server);
 ptyProcess.onData(data => {
     io.emit('terminal:data' , data)
@@ -53,6 +55,23 @@ io.on('connection' , (socket)=>{
         ptyProcess.write(data);
     })
 });
+
+
+
+const userDirectory = path.resolve(process.env.INIT_CWD, 'user');
+
+async function ensureUserDirectory() {
+    try {
+        await fs.mkdir(userDirectory, { recursive: true });
+        console.log(`Directory ensured: ${userDirectory}`);
+    } catch (error) {
+        console.error(`Failed to create directory ${userDirectory}:`, error);
+    }
+}
+
+// Call this function before starting the server
+await ensureUserDirectory();
+
 
 app.get('/files' , async (req, res) => {
     const fileTree = await generateFileTree('./user');
